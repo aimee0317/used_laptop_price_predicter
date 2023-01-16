@@ -25,7 +25,7 @@ def get_detail_data(soup):
     # item sold
     try:
         title = soup.find('h1', id='itemTitle').text.strip().replace(
-            'Details about  ', '')
+            'Details about  \xa0', '')
     except:
         title = ''
 
@@ -42,30 +42,50 @@ def get_detail_data(soup):
     except:
         condition = ''
 
-    detail_len = len(soup.find_all(
+    features = {
+        'title': title,
+        'currency': currency,
+        'price': price,
+        'condition': condition
+    }
+
+    spec_keys = ['Processor',
+                 'Screen Size',
+                 'Color',
+                 'RAM Size',
+                 'SSD Capacity',
+                 'GPU',
+                 'Processor Speed',
+                 'Brand',
+                 'Series',
+                 'Type',
+                 'Maximum Resolution',
+                 'Model',
+                 'Operating System',
+                 'Hard Drive Capacity',
+                 'Storage Type',
+                 'test']
+
+    specs_len = len(soup.find_all(
         'div', class_='ux-labels-values__labels-content'))
 
     i = 1
-    specs = {}
-    while i < detail_len:
-        detail_label = soup.find_all(
-            'div', class_='ux-labels-values__labels-content')[i].text.strip()
-        detail_value = soup.find_all(
-            'div', class_='ux-labels-values__values-content')[i].text.strip()
-        specs[detail_label] = detail_value
+    while i < specs_len:
+        spec_label = soup.find_all(
+            'div', class_='ux-labels-values__labels-content')[i].text.strip().replace(':', '')
+        if spec_label in spec_keys:
+            spec_value = soup.find_all(
+                'div', class_='ux-labels-values__values-content')[i].text.strip()
+            features[spec_label] = spec_value
+        else:
+            pass
         i += 1
-    print(specs)
 
-    # try:
-    #     processor = soup.find_all(
-    #         'div', class_='ux-labels-values__labels-content')[1].text.strip()
-    # except:
-    #     processor = ''
-
-    print(title)
-    print(currency)
-    print(price)
-    print(condition)
+        for spec in spec_keys:
+            if spec not in features.keys():
+                features[spec] = None
+    print(features)
+    return features
 
 
 def main():
