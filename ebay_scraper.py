@@ -7,6 +7,7 @@
 
 import requests
 from bs4 import BeautifulSoup
+import csv
 
 
 def get_page(url):
@@ -34,8 +35,14 @@ def get_detail_data(soup):
             'span', 'notranslate vi-VR-cvipPrice').text.strip()
         currency, price = p.split(' ')
     except:
-        currency = ''
-        price = ''
+        try:
+            p = soup.find('span', class_='notranslate',
+                          id='prcIsum').text.strip()
+            currency, price = p.split(' ')
+            print(p)
+        except:
+            currency = ''
+            price = ''
 
     try:
         condition = soup.find('div', class_='u-flL condText').text.strip()
@@ -84,7 +91,6 @@ def get_detail_data(soup):
         for spec in spec_keys:
             if spec not in features.keys():
                 features[spec] = None
-
     return features
 
 
@@ -99,16 +105,24 @@ def get_index_data(soup):
     return urls
 
 
+def write_csv(data, url):
+    with open('output.csv', 'a') as csvfile:
+        writer = csv.writer(csvfile)
+
+        row = list(data.values())
+
+        writer.writerow(row)
+
+
 def main():
-    url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=LAPTOP&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1&_pgn=1'
+    url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=laptop&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1&_pgn=1'
 
     products = get_index_data(get_page(url))
     products_work = products[1:]
-    # print(products_work)
 
     for link in products_work:
         data = get_detail_data(get_page(link))
-        print(data)
+        write_csv(data, link)
 
 
 if __name__ == '__main__':
