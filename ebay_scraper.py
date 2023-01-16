@@ -21,9 +21,6 @@ def get_page(url):
 
 
 def get_detail_data(soup):
-    # title
-    # price
-    # item sold
     try:
         title = soup.find('h1', id='itemTitle').text.strip().replace(
             'Details about  \xa0', '')
@@ -31,18 +28,19 @@ def get_detail_data(soup):
         title = ''
 
     try:
-        p = soup.find(
-            'span', 'notranslate vi-VR-cvipPrice').text.strip()
-        currency, price = p.split(' ')
-    except:
         try:
+            p = soup.find('span', 'notranslate vi-VR-cvipPrice').text.strip()
+        except:
             p = soup.find('span', class_='notranslate',
                           id='prcIsum').text.strip()
-            currency, price = p.split(' ')
+        else:
+            p = soup.find(
+                'span', class_='notranslate vi-VR-cvipPrice').text.strip()
             print(p)
-        except:
-            currency = ''
-            price = ''
+        currency, price = p.split(' ')
+    except:
+        currency = ''
+        price = ''
 
     try:
         condition = soup.find('div', class_='u-flL condText').text.strip()
@@ -109,7 +107,7 @@ def write_csv(data, url):
     with open('output.csv', 'a') as csvfile:
         writer = csv.writer(csvfile)
 
-        row = list(data.values())
+        row = list(data.values()) + [url]
 
         writer.writerow(row)
 
