@@ -36,7 +36,6 @@ def get_detail_data(soup):
         else:
             p = soup.find(
                 'span', class_='notranslate vi-VR-cvipPrice').text.strip()
-            print(p)
         currency, price = p.split(' ')
     except:
         currency = ''
@@ -113,14 +112,18 @@ def write_csv(data, url):
 
 
 def main():
-    url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=laptop&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1&_pgn=1'
+    pgn_max = 2
+    pgn = 1
+    while pgn <= pgn_max:
+        url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=laptop&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1&_pgn=' + \
+            str(pgn)
+        products = get_index_data(get_page(url))
+        products_work = products[1:]
 
-    products = get_index_data(get_page(url))
-    products_work = products[1:]
-
-    for link in products_work:
-        data = get_detail_data(get_page(link))
-        write_csv(data, link)
+        for link in products_work:
+            data = get_detail_data(get_page(link))
+            write_csv(data, link)
+        pgn += 1
 
 
 if __name__ == '__main__':
