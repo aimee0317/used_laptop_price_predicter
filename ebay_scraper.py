@@ -84,14 +84,31 @@ def get_detail_data(soup):
         for spec in spec_keys:
             if spec not in features.keys():
                 features[spec] = None
-    print(features)
+
     return features
 
 
-def main():
-    url = 'https://www.ebay.com/itm/314323564719?hash=item492f24f8af:g:eXcAAOSwscZjwJrv&amdata=enc%3AAQAHAAAAkNU%2BBnk2P1b1WL%2FJIeWEAXRwNWP%2BPfISmfcxeuNu42xE18f7%2FyUhTJT8aRbAn1wUUMTLePIZsFYHCyR%2FDF90wZmoxWlzo%2F%2FNXCb0dw1d%2FgEAXPrQFdpa76ia8aLM5QBbQTXt6qcB3gffYYfh%2FBJYkpZHgoHBWUnLeFYwPNSbVwScUjeaVxhlLqOSFY49zPVmww%3D%3D%7Ctkp%3ABk9SR-Skoau2YQ'
+def get_index_data(soup):
+    try:
+        links = soup.find_all('a', class_='s-item__link')
+    except:
+        links = []
 
-    get_detail_data(get_page(url))
+    urls = [item.get('href') for item in links]
+
+    return urls
+
+
+def main():
+    url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=LAPTOP&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1&_pgn=1'
+
+    products = get_index_data(get_page(url))
+    products_work = products[1:]
+    # print(products_work)
+
+    for link in products_work:
+        data = get_detail_data(get_page(link))
+        print(data)
 
 
 if __name__ == '__main__':
