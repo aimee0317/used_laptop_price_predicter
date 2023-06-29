@@ -1,1 +1,1 @@
-# used_laptop_price_prediction
+# used_laptop_price_predicter
