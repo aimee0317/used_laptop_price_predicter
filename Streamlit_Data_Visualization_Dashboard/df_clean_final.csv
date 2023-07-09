@@ -320,7 +320,7 @@
 318,hp 14-ca023nr-celeron n3350@1.10ghz 4gb ram 32gb ssd chrome os (225),12.99,used,14.0,missing,4.0,32.0,1.1,hp,missing,,ssd,intel,celeron,n,,0,chrome os
 319,"macbook pro 13"" (mid 2012) i5-3210m@2.50ghz 4gb ram no hdd/os **repair**(226)",13.5,used,13.0,missing,4.0,,2.5,apple,missing,,hdd,intel,core,i5,3.0,0,no os
 320,hp g6-2228dx-amd a6-4400m@2.70ghz 8gb ram 120gb ssd w10h radeon gfx (229),20.0,used,15.6,missing,8.0,120.0,2.7,hp,1366x768,,ssd,amd,a,6,,1,windows
-321,dell precision 5530 i7-8850h touch 32gb ddr4 512gb nvidia p1000 win 10 pro  29-3,449.99,used,15.6,silver,32.0,512.0,2.6,dell,3840x2160,,nvme ssd,intel,core,i7,8.0,1,windows
+321,dell precision 5530 i7-8850h touch 32gb ddr4 512gb nvidia p1000 win 10 pro  29-3,449.99,used,15.6,silver,32.0,512.0,2.6,dell,3840x2160,,ssd,intel,core,i7,8.0,1,windows
 322,"dell latitude 3301 13.3"" fhd - i7-8565u cpu✔8gb ram✔256gb ssd✔win 10 pro✔3301-01",102.5,used,13.3,missing,8.0,256.0,,dell,1920x1080,,ssd,intel,core,i7,8.0,0,windows
 323,"dell latitude 5414 rugged touch (i7-6600u 2.60ghz, ram 16 gb, 512 gb ssd)",229.0,used,14.0,black,16.0,512.0,2.6,dell,1920x1080,,ssd,intel,core,i7,6.0,1,windows
 324,"dell 15.6"" latitude 5520 laptop",484.5,used,15.6,gray,8.0,256.0,2.4,dell,1920x1080,,ssd,intel,core,i5,11.0,1,windows
