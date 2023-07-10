@@ -6,14 +6,17 @@ TBU
 TBH 
 
 ## Visualizations 
-TBU 
+Here is the demo of the streamlit data visualization dashboard 
+![demo](dashboard.gif)
+<br> To use the dashboard online: https://laptop-price-visualization-dashboard.streamlit.app/ 
+<br> You can find the files to deploy the dashboard online in this repository: https://github.com/aimee0317/laptop_price_data_visualization
 
 ## Usage
 
 ### Creating the environment
 
 At the project root
-`conda env create --file laptop_env.yaml`
+`conda env create --file laptop_env.yml`
 
 <br>Run the following command from the environment where you installed
 JupyterLab.
