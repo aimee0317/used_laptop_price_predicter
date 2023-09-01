@@ -1,4 +1,4 @@
-# Used Laptop Price Predicter Using Neural Network 
+# Used Laptop Price Predicter
 ## About 
 TBU
 
